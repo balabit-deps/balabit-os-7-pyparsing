@@ -1,0 +1,43 @@
+#!/bin/sh
+#
+# new-upstream: Copyright © 2012 by Jan Dittberner <jandd@debian.org>
+#
+# Called by uscan; from uscan(1):
+#
+# Finally,  if a third parameter (an action) is given in the watchfile
+# line, this is taken as the name of a command, and the command
+#  command --upstream-version version filename
+# 
+# is executed, using either the original file or the symlink name.
+#
+# Thanks to Vincent Fourmond's <fourmond@debian.org> freecol package - where he
+# thanks Sam Morris <sam@robots.org.uk> for giving him the idea - for giving me
+# the idea.
+#
+
+# If called manually, this file must be called within the pyparsing/ directory.
+
+version=$2
+filename=`readlink -f $3`
+targetdir=`dirname $filename`
+
+dir=`mktemp -d`
+
+curdir=`pwd`
+
+origname="${targetdir}/pyparsing_${version}+dfsg1.orig.tar.gz"
+
+echo "Repacking pyparsing version $version from $filename"
+
+# Abort on errors:
+set -e
+
+cd "$dir"
+tar xzf "$filename"
+rm -rf \
+    pyparsing-$version/docs/pycon06-AdventureEngineUsingPyparsing-notes.pdf \
+    pyparsing-$version/docs/pycon06-IntroToPyparsing-notes.pdf
+tar czf "$origname" pyparsing-$version
+echo "Repacked tarball is $origname"
+cd -
+rm -rf "$dir"

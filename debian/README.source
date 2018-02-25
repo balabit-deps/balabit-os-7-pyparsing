@@ -1,0 +1,15 @@
+Debian did remove these PDF files from the official upstream released tarball
+since they are sourceless:
+
+docs/pycon06-AdventureEngineUsingPyparsing-notes.pdf
+docs/pycon06-IntroToPyparsing-notes.pdf
+
+a request to add sources for theses files was filed in upstream's issue tracker
+at
+https://sourceforge.net/tracker/?func=detail&aid=3528274&group_id=97203&atid=617311
+
+To get an upstream tarball with these files removed you can execute
+
+debian/rules get-orig-source
+
+ -- Jan Dittberner <jandd@debian.org>, Sat, 19 May 2012 21:59:46 +0200

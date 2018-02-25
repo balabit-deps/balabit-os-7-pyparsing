@@ -1,0 +1,16 @@
+#!/usr/bin/make -f
+
+#export DH_VERBOSE = 1
+#export PYBUILD_VERBOSE = 1
+export PYBUILD_NAME = pyparsing
+
+%:
+	dh $@ --with=python2,python3,pypy --buildsystem=pybuild
+
+
+override_dh_installexamples:
+	dh_installexamples -i -ppython-pyparsing-doc
+
+
+override_dh_compress:
+	dh_compress -i -X.py

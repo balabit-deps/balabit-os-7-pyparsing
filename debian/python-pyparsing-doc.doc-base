@@ -1,0 +1,9 @@
+Document: python-pyparsing-doc
+Title: PyParsing Documentation
+Author:  Pyparsing Authors
+Abstract: Sphinx documentation for PyParsing
+Section: Network/Remote Access
+
+Format: HTML
+Index: /usr/share/doc/python-pyparsing-doc/HowToUsePyparsing.html
+Files: /usr/share/doc/python-pyparsing-doc/*.html
